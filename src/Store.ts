@@ -6,8 +6,14 @@ import {
   TypedUseSelectorHook,
 } from "react-redux";
 import SearchPokemonReducer from "./SearchPokemon/Redux/Reducer/SearchPokemon";
+import PokedexReducer from "./Pokedex/Redux/Reducer/Pokedex";
+import PokemonReducer from "./Pokemon/Redux/Reducer/Pokemon";
 
-const rootReducer = combineReducers({ SearchPokemonReducer });
+const rootReducer = combineReducers({
+  SearchPokemonReducer,
+  PokedexReducer,
+  PokemonReducer,
+});
 
 const Store = createStore(
   rootReducer,

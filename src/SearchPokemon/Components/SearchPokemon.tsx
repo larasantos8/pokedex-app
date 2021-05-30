@@ -1,15 +1,37 @@
-import { TextField } from "@material-ui/core";
+import * as React from "react";
+import { TextField, Dialog, IconButton } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import * as actions from "../Redux/Actions/SeachPokemon";
+import * as actionsPokedex from "../../Pokedex/Redux/Actions/Pokedex";
 import { useSelector } from "../../Store";
+import Pokedex from "../../Pokedex/Components/Pokedex";
+import { Close } from "@material-ui/icons";
+import { StyledContainerIcon } from "./SearchPokemon_style";
+
+// interface PokemonsPokedexProps { //props pokemon
+//   name: string;
+//   sprites: any;
+//   height: number;
+//   weight: number;
+//   types: any[];
+//   stats: any[];
+// }
+// [];
 
 const SearchPokemon = () => {
   const dispatch = useDispatch();
   const pokemonState = useSelector((state) => state.SearchPokemonReducer.data);
+  const [pokedexIsOpen, setPokedexIsOpen] = React.useState(false);
 
   const handleSearchPokemon = (event: any) => {
     dispatch(actions.loadDataSearchedPokemon(event.target.value));
   };
+
+  const handleCapturePokemon = () => {
+    dispatch(actionsPokedex.capturePokemon(pokemonState));
+  };
+
+  console.log("pokemonState", pokemonState);
 
   return (
     <div>
@@ -34,6 +56,22 @@ const SearchPokemon = () => {
           <button>+ Capturar</button>
         </div>
       )} */}
+      <button onClick={handleCapturePokemon}>+ Capturar</button>
+      <button onClick={() => setPokedexIsOpen(true)}>pokedex</button>
+      <Dialog
+        aria-labelledby="Pokédex"
+        aria-describedby="Lista de pokémons capturados"
+        open={pokedexIsOpen}
+        // style={{ height: "600px", width: "300px" }}
+      >
+        <StyledContainerIcon>
+          <IconButton onClick={() => setPokedexIsOpen(false)}>
+            <Close />
+          </IconButton>
+        </StyledContainerIcon>
+
+        <Pokedex />
+      </Dialog>
     </div>
   );
 };

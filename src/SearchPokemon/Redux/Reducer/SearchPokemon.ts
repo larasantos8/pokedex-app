@@ -1,4 +1,4 @@
-//import { PaymentsSaleDetailsInterface } from "../../Components/PaymentsSaleDetails/PaymentsSaleDetails";
+//import { PokemonInterface } from "../../Components/SearchPokemon/SearchPokemon";
 import * as actionTypes from "../Types/SearchPokemon";
 
 interface State {
