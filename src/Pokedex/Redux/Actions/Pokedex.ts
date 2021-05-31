@@ -19,3 +19,18 @@ export const capturePokemon = (data: any) => {
     });
   };
 };
+
+export const dropPokemon = (id: any) => {
+  return (dispatch: any, getState: any) => {
+    const { capturedPokemons } = getState().PokedexReducer;
+
+    const pokemonsPokedex = capturedPokemons.filter((pokemon: any) => {
+      return pokemon.id !== id;
+    });
+
+    dispatch({
+      data: pokemonsPokedex,
+      type: actionTypes.DELETE_POKEMON_FROM_POKEDEX,
+    });
+  };
+};

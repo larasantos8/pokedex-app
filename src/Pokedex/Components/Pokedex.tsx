@@ -1,6 +1,8 @@
 import * as React from "react";
-import { useSelector } from "../../Store";
 import { useHistory } from "react-router";
+import { useDispatch } from "react-redux";
+import { useSelector } from "../../Store";
+import * as actionsPokemon from "../../Pokemon/Redux/Actions/Pokemon";
 import {
   Paper,
   Table,
@@ -25,6 +27,7 @@ export interface PokemonProps {
 
 const Pokedex = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const pokemonsPokedex = useSelector(
     (state) => state.PokedexReducer.capturedPokemons
   );
@@ -42,8 +45,9 @@ const Pokedex = () => {
     setPage(0);
   };
 
-  const handleMoreDetailsPokemon = (pokemon: any) => {
-    history.push(`pokedex/?pokemon=${pokemon}`);
+  const handleMoreDetailsPokemon = (selectedPokemon: any) => {
+    dispatch(actionsPokemon.moreDetailsCapturedPokemon(selectedPokemon));
+    history.push(`pokedex/?pokemon=${selectedPokemon.name}`);
   };
 
   return (
@@ -65,7 +69,7 @@ const Pokedex = () => {
                     return (
                       <ClickableTableRow
                         key={pokemon.id}
-                        onClick={() => handleMoreDetailsPokemon(pokemon.name)}
+                        onClick={() => handleMoreDetailsPokemon(pokemon)}
                       >
                         <TableCell>{pokemon.name}</TableCell>
                         <TableCell>

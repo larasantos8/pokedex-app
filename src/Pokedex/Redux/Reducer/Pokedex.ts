@@ -16,6 +16,10 @@ const Pokedex = (state: State = initialState, action: any) => {
         ...state,
         capturedPokemons: [...state.capturedPokemons, ...action.data],
       };
+    case actionTypes.DELETE_POKEMON_FROM_POKEDEX:
+      return {
+        capturedPokemons: [...action.data],
+      };
     default:
       return state;
   }
