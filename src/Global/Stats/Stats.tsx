@@ -2,7 +2,7 @@ import { StatsBar, Container } from "./Stats_style";
 
 interface StatsProps {
   stats: string;
-  color: string;
+  color: string | undefined;
   value: number;
 }
 

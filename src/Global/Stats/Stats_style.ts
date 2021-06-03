@@ -2,7 +2,7 @@ import styled, { keyframes } from "styled-components";
 
 interface StatsBarProps {
   width: number;
-  color: string;
+  color: string | undefined;
 }
 
 const expandRight = keyframes`
