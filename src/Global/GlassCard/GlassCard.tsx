@@ -1,4 +1,4 @@
-import { GlassContainer, StyledImg, StyledH1 } from "./GlassCard_style";
+import { GlassContainer, StyledImg } from "./GlassCard_style";
 import { useSpring, config } from "react-spring";
 
 const calc = (x: any, y: any) => [
