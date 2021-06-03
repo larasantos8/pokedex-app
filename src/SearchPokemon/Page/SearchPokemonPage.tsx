@@ -1,7 +1,11 @@
 import SearchPokemon from "../Components/SearchPokemon";
 
 const SearchPokemonPage = () => {
-  return <SearchPokemon />;
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <SearchPokemon />
+    </div>
+  );
 };
 
 export default SearchPokemonPage;
