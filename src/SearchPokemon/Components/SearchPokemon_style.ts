@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button, TextField } from "@material-ui/core";
 
-export const StyledContainerIcon = styled("div")`
+export const StyledContainerFlexEnd = styled("div")`
   display: flex;
   justify-content: flex-end;
 `;
@@ -10,6 +10,7 @@ export const Container = styled("div")`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 50px;
 `;
 
 export const StyledTextField = styled(TextField)`
@@ -20,6 +21,12 @@ export const StyledButton = styled(Button)`
   width: 200px;
   height: 50px;
   margin-left: 15px !important;
+`;
+
+export const StyledClearButton = styled(Button)`
+  background: red !important;
+  color: white !important;
+  margin-right: 50px !important;
 `;
 
 export const StyledImg = styled("img")`

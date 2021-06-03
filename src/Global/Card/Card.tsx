@@ -1,6 +1,7 @@
-import { Card, CardActions, CardContent } from "@material-ui/core";
+import { CardActions } from "@material-ui/core";
+import React from "react";
 import Pokeball from "../../Assets/pokeball.png";
-import { StyledButton } from "./Card_style";
+import { StyledButton, StyledCard, StyledCardContent } from "./Card_style";
 
 interface CardImageProps {
   image: string;
@@ -16,36 +17,20 @@ const CardImage: React.FC<CardImageProps> = ({
   handleClick,
 }) => {
   return (
-    <Card
-      style={{
-        maxWidth: "200px",
-        backgroundColor: "#717178",
-        marginBottom: "20px",
-      }}
-    >
-      <img src={image} alt={title} style={{ height: "230px" }} />
-      <CardContent
-        style={{
-          padding: "0 10px",
-        }}
-      >
-        <h1
-          style={{
-            textTransform: "capitalize",
-            fontSize: "22px",
-            margin: "0px",
-          }}
-        >
+    <StyledCard>
+      <img src={image} alt={title} />
+      <StyledCardContent>
+        <h1>
           {title} Nº: {id}
         </h1>
-      </CardContent>
+      </StyledCardContent>
       <CardActions>
         <StyledButton color="primary" variant="contained" onClick={handleClick}>
           <img src={Pokeball} alt="Pokeball" />
-          Capturar
+          Capture
         </StyledButton>
       </CardActions>
-    </Card>
+    </StyledCard>
   );
 };
 

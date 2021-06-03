@@ -49,13 +49,10 @@ const SearchPokemon = (state: State = initialState, action: any) => {
         hasError: false,
         loading: false,
       };
-    // case actionTypes.CLEAR_POKEMON:
-    //   return {
-    //     ...state,
-    //     data: {},
-    //     hasError: false,
-    //     loading: false,
-    //   };
+    case actionTypes.SEARCH_AND_CAPTURE_POKEMON_REQUEST:
+      return { ...state, hasError: false, loading: true };
+    case actionTypes.SEARCH_AND_CAPTURE_ERROR:
+      return { ...initialState, hasError: true, loading: false };
     default:
       return state;
   }

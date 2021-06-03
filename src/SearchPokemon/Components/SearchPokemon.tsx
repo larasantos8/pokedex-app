@@ -1,19 +1,19 @@
 import * as React from "react";
-import { Button, Dialog, IconButton, Tooltip } from "@material-ui/core";
-import ClearIcon from "@material-ui/icons/Clear";
+import { Dialog, IconButton, Tooltip } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import * as actions from "../Redux/Actions/SeachPokemon";
 import * as actionsPokedex from "../../Pokedex/Redux/Actions/Pokedex";
 import { useSelector } from "../../Store";
 import Pokedex from "../../Pokedex/Components/Pokedex";
-import { Close } from "@material-ui/icons";
+import { Close, Clear } from "@material-ui/icons";
 import PokedexClosed from "../../Assets/pokedex.png";
 import {
   Container,
   ContainerButtonMoreData,
   GridContainer,
   StyledButton,
-  StyledContainerIcon,
+  StyledClearButton,
+  StyledContainerFlexEnd,
   StyledImg,
   StyledTextField,
 } from "./SearchPokemon_style";
@@ -60,31 +60,36 @@ const SearchPokemon = () => {
   React.useEffect(() => {
     dispatch(actions.loadDataListPokemon({ offset, limit }));
     setOffset(limit);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <ContainerSection>
-      <h1 style={{ textAlign: "center" }}>Qual pokemon vamos capturar hoje?</h1>
-      <div>
-        <p style={{ textAlign: "center" }}>
-          Pense em um textinho legal para inserir aqui!
-        </p>
-      </div>
-      <div style={{ direction: "rtl" }}>
-        <Tooltip title="Pokedex" placement="left" arrow>
+      <h1 style={{ textAlign: "center" }}>
+        Which Pokemon are we going to capture today?
+      </h1>
+
+      <p style={{ textAlign: "center" }}>
+        Search for a new Pokémon or click on the Pokédex to view your captured
+        Pokémon!
+      </p>
+
+      <StyledContainerFlexEnd>
+        <Tooltip title="Pokédex" placement="left" arrow>
           <StyledImg
             src={PokedexClosed}
-            alt="Pokedex"
+            alt="Pokédex"
             role="button"
             onClick={() => setPokedexIsOpen(true)}
           />
         </Tooltip>
-      </div>
-      <Container style={{ marginTop: "50px" }}>
+      </StyledContainerFlexEnd>
+      <Container>
         <StyledTextField
           value={pokemonIdentifier}
-          label="Digite o nome ou número do pokemon que deseja capturar!"
-          placeholder="pikachu ou 25"
+          label="Enter the name or number of the pokémon you want to catch!"
+          placeholder="pikachu or 25"
           fullWidth
           margin="normal"
           variant="outlined"
@@ -97,29 +102,26 @@ const SearchPokemon = () => {
           variant="contained"
           onClick={handleSearchPokemon}
         >
-          Procurar
+          Search
         </StyledButton>
       </Container>
       {Object.keys(pokemonState).length > 0 && (
-        <StyledContainerIcon>
-          <Tooltip title="Limpar filtro">
-            <Button
+        <StyledContainerFlexEnd>
+          <Tooltip title="Clean filter">
+            <StyledClearButton
               variant="contained"
-              style={{ background: "red", color: "white", marginRight: "50px" }}
-              onClick={() => {
-                handleClearPokemonList();
-              }}
+              onClick={() => handleClearPokemonList()}
             >
-              <ClearIcon />
-            </Button>
+              <Clear />
+            </StyledClearButton>
           </Tooltip>
-        </StyledContainerIcon>
+        </StyledContainerFlexEnd>
       )}
 
       <GridContainer>
         {pokemonListState.map((pokemon: PokemonProps) => (
           <CardImage
-            key={pokemon.id}
+            key={pokemon.id + Math.random()}
             title={pokemon.name}
             id={pokemon.id}
             image={pokemon.sprite}
@@ -130,7 +132,7 @@ const SearchPokemon = () => {
 
       {Object.keys(pokemonState).length > 0 && (
         <CardImage
-          key={pokemonState.id}
+          key={pokemonState.id + Math.random()}
           title={pokemonState.name}
           id={pokemonState.id}
           image={pokemonState.sprites?.front_default}
@@ -144,20 +146,20 @@ const SearchPokemon = () => {
           variant="contained"
           onClick={handleLoadMoreData}
         >
-          Carregar mais
+          Load more
         </StyledButton>
       </ContainerButtonMoreData>
 
       <Dialog
         aria-labelledby="Pokédex"
-        aria-describedby="Lista de pokémons capturados"
+        aria-describedby="List of captured pokémons"
         open={pokedexIsOpen}
       >
-        <StyledContainerIcon>
+        <StyledContainerFlexEnd>
           <IconButton onClick={() => setPokedexIsOpen(false)}>
             <Close />
           </IconButton>
-        </StyledContainerIcon>
+        </StyledContainerFlexEnd>
 
         <Pokedex />
       </Dialog>

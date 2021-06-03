@@ -1,4 +1,4 @@
-import { API_GetPokemon, API_GetPokemonList } from "./endpoints";
+import { API_GetPokemon } from "./endpoints";
 import axios from "axios";
 
 export interface GetPokemonProps {
@@ -26,7 +26,7 @@ export const getPokemonList = async ({
 }: GetPokemonListProps) => {
   try {
     const res = await axios.get(
-      API_GetPokemonList + `/?limit=${limit}&offset=${offset}`
+      API_GetPokemon + `/?limit=${limit}&offset=${offset}`
     );
 
     const pokemonList = res.data.results.map((result: any, index: any) => ({
