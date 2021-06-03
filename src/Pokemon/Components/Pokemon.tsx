@@ -2,6 +2,7 @@ import { useHistory } from "react-router";
 import { useDispatch } from "react-redux";
 import { useSelector } from "../../Store";
 import * as actionsPokedex from "../../Pokedex/Redux/Actions/Pokedex";
+import * as actionsSeachPokemon from "../../SearchPokemon/Redux/Actions/SeachPokemon";
 import GlassCard from "../../Global/GlassCard/GlassCard";
 import { Button } from "@material-ui/core";
 import Arrow from "../../Assets/arrow.png";
@@ -12,12 +13,13 @@ import {
   Container,
   ContainerSize,
   ContainerTypes,
+  ContainerSection,
+  ContainerButtons,
 } from "./Pokemon_style";
 import Stats from "../../Global/Stats/Stats";
+import { StatsProps } from "../../Pokedex/Components/Pokedex";
 
-interface PokemonProps {}
-
-const Pokemon: React.FC<PokemonProps> = () => {
+const Pokemon = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const selectedPokemon = useSelector(
@@ -29,68 +31,66 @@ const Pokemon: React.FC<PokemonProps> = () => {
     history.push("/search-pokemon");
   };
 
-  const StatsColor = {
-    hp: "#c52018",
-    attack: "#f6e652",
-    defense: "#2295d8",
-  };
+  const StatsColor = new Map([
+    ["hp", "#c52018"],
+    ["attack", "#f6e652"],
+    ["defense", "#2295d8"],
+    ["special-attack", "#21d430"],
+    ["special-defense", "#c56d25"],
+    ["speed", "#6719cc"],
+  ]);
 
   return (
-    <div>
-      <Button
-        color="primary"
-        variant="contained"
-        onClick={() => history.push("/search-pokemon")}
-      >
-        <StyledArrow src={Arrow} />
-        Voltar ao início
-      </Button>
-
+    <ContainerSection>
       <div>
-        <div>
-          <h1 style={{ textAlign: "center" }}>{selectedPokemon.name}</h1>
+        <h1 style={{ textAlign: "center" }}>{selectedPokemon.name}</h1>
+      </div>
+      <div>
+        <Container>
+          <div>
+            <h2>Types</h2>
+
+            {selectedPokemon.types.map((pokemon: any) => (
+              <ContainerTypes>{pokemon.type.name}</ContainerTypes>
+            ))}
+          </div>
+          <GlassCard sprite={selectedPokemon.sprite} />
+
+          <div>
+            <h2>Weight</h2>
+            <ContainerSize> {selectedPokemon.weight}</ContainerSize>
+            <h2>Height</h2>
+            <ContainerSize> {selectedPokemon.height}</ContainerSize>
+          </div>
+        </Container>
+
+        <div style={{ margin: "20px 0" }}>
+          <h2>Stats</h2>
+          {selectedPokemon.stats.map((pokemonStats: StatsProps) => (
+            <Stats
+              key={pokemonStats.stat.name}
+              color={StatsColor.get(pokemonStats.stat.name)}
+              value={pokemonStats.base_stat}
+              stats={pokemonStats.stat.name}
+            />
+          ))}
         </div>
-        <div>
-          <Container>
-            <div>
-              <h2>Types</h2>
 
-              {selectedPokemon.types.map((pokemon: any) => (
-                <ContainerTypes>{pokemon.type.name}</ContainerTypes>
-              ))}
-            </div>
-            <GlassCard sprite={selectedPokemon.sprite} />
+        <p>passos da evolução</p>
 
-            <div>
-              <h2>Weight</h2>
-              <ContainerSize> {selectedPokemon.weight}</ContainerSize>
-              <h2>Height</h2>
-              <ContainerSize> {selectedPokemon.height}</ContainerSize>
-            </div>
-          </Container>
+        <ContainerButtons>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => {
+              history.push("/search-pokemon");
+              dispatch(actionsSeachPokemon.clearPokemonList());
+            }}
+          >
+            <StyledArrow src={Arrow} />
+            Voltar
+          </Button>
 
-          {/* <p>
-            stats:
-            {selectedPokemon.stats.map((pokemon: any) => (
-              <ul key={pokemon.stat.name}>
-                <li>{pokemon.stat.name}</li>
-                <li>{pokemon.base_stat}</li>
-              </ul>
-            ))}
-          </p> */}
-
-          <p>
-            stats:
-            {selectedPokemon.stats.map((pokemon: any) => (
-              <Stats
-                color={StatsColor["attack"]}
-                value={pokemon.base_stat}
-                stats={pokemon.stat.name}
-              />
-            ))}
-          </p>
-
-          <p>passos da evolução</p>
           <Button
             color="primary"
             variant="contained"
@@ -99,9 +99,9 @@ const Pokemon: React.FC<PokemonProps> = () => {
             <StyledPokeball src={OpenPokeball} />
             Excluir pokemon
           </Button>
-        </div>
+        </ContainerButtons>
       </div>
-    </div>
+    </ContainerSection>
   );
 };
 export default Pokemon;

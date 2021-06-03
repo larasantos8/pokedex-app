@@ -12,7 +12,11 @@ const PokemonPage = () => {
     if (!pokemon) history.push("/search-pokemon");
   }, [pokemon, history]);
 
-  return <Pokemon />;
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Pokemon />
+    </div>
+  );
 };
 
 export default PokemonPage;
