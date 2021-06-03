@@ -8,21 +8,38 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableContainer,
   TableHead,
   TablePagination,
   TableRow,
 } from "@material-ui/core";
-import { ClickableTableRow } from "./Pokedex_style";
+import {
+  StyledTableContainer,
+  ClickableTableRow,
+  ContainerNoPokemon,
+  StyledSubtitle,
+  StyledTitle,
+} from "./Pokedex_style";
+import AshSad from "../../Assets/ash-sad.png";
 
+interface TypesProps {
+  type: {
+    name: string;
+  };
+}
+export interface StatsProps {
+  base_stat: number;
+  stat: {
+    name: string;
+  };
+}
 export interface PokemonProps {
   id: number;
   name: string;
-  sprite: any;
+  sprite: string;
   height: number;
   weight: number;
-  types: any[];
-  stats: any[];
+  types: TypesProps[];
+  stats: StatsProps[];
 }
 
 const Pokedex = () => {
@@ -54,12 +71,12 @@ const Pokedex = () => {
     <>
       {pokemonsPokedex.length > 0 ? (
         <Paper>
-          <TableContainer>
+          <StyledTableContainer>
             <Table stickyHeader aria-label="Pokémons Table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Nome</TableCell>
-                  <TableCell>Imagem</TableCell>
+                  <TableCell align="center">Name</TableCell>
+                  <TableCell align="center">Image</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -68,11 +85,11 @@ const Pokedex = () => {
                   .map((pokemon) => {
                     return (
                       <ClickableTableRow
-                        key={pokemon.id}
+                        key={pokemon.id + Math.random()}
                         onClick={() => handleMoreDetailsPokemon(pokemon)}
                       >
-                        <TableCell>{pokemon.name}</TableCell>
-                        <TableCell>
+                        <TableCell align="center">{pokemon.name}</TableCell>
+                        <TableCell align="center">
                           <img src={pokemon.sprite} alt="Pokémon" />
                         </TableCell>
                       </ClickableTableRow>
@@ -80,7 +97,7 @@ const Pokedex = () => {
                   })}
               </TableBody>
             </Table>
-          </TableContainer>
+          </StyledTableContainer>
           <TablePagination
             rowsPerPageOptions={[10]}
             component="div"
@@ -92,7 +109,14 @@ const Pokedex = () => {
           />
         </Paper>
       ) : (
-        <div>Você ainda não capturou nenhum pokemon :/ </div>
+        <ContainerNoPokemon>
+          <StyledTitle>You haven't caught any Pokemon yet!!</StyledTitle>
+          <StyledSubtitle>
+            Go back to the previous screen and capture the Pokémon so that they
+            appear in your Pokédex.
+          </StyledSubtitle>
+          <img src={AshSad} alt="Ash sad" />
+        </ContainerNoPokemon>
       )}
     </>
   );
