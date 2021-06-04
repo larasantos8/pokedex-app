@@ -22,6 +22,7 @@ import {
   ContainerStats,
   StyledH2,
   StyledH1,
+  ContainerTitle,
 } from "./Pokemon_style";
 import Stats from "../../Global/Stats/Stats";
 import { StatsProps } from "../../Pokedex/Components/Pokedex";
@@ -136,9 +137,9 @@ const Pokemon = () => {
 
   return (
     <ContainerSection>
-      <div>
+      <ContainerTitle>
         <StyledH1>{selectedPokemon.name}</StyledH1>
-      </div>
+      </ContainerTitle>
       <div>
         <Container>
           <div>

@@ -16,6 +16,11 @@ export const Container = styled("div")`
   justify-content: space-evenly;
 `;
 
+export const ContainerTitle = styled("div")`
+  display: flex;
+  justify-content: center;
+`;
+
 export const ContainerSection = styled("div")`
   width: 70%;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -70,15 +75,11 @@ export const ContainerEvolutions = styled("div")`
 
 export const ContainerStats = styled("div")`
   margin: 20px 0px 30px 50px;
+  width: 70%;
 `;
 
 export const StyledH2 = styled("h2")`
   margin-left: 50px;
-`;
-
-export const StyledH1 = styled("h1")`
-  text-align: center;
-  text-transform: capitalize;
 `;
 
 export const Evolutions = styled("div")`
@@ -93,4 +94,48 @@ export const EvolutionsImg = styled("img")`
   width: 120px;
   margin-top: 15px;
   margin-left: 15px;
+`;
+
+export const StyledH1 = styled("h1")`
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  display: inline-block;
+  text-align: center;
+  text-transform: capitalize;
+
+  :hover {
+    color: #0395da;
+    animation-name: rubberBand;
+  }
+
+  @keyframes rubberBand {
+    from {
+      transform: scale3d(1, 1, 1);
+    }
+
+    30% {
+      transform: scale3d(1.25, 0.75, 1);
+    }
+
+    40% {
+      transform: scale3d(0.75, 1.25, 1);
+    }
+
+    50% {
+      transform: scale3d(1.15, 0.85, 1);
+    }
+
+    65% {
+      transform: scale3d(0.95, 1.05, 1);
+    }
+
+    75% {
+      transform: scale3d(1.05, 0.95, 1);
+    }
+
+    to {
+      transform: scale3d(1, 1, 1);
+    }
+  }
 `;

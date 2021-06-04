@@ -24,11 +24,7 @@ export const StatsBar = styled("div")<StatsBarProps>`
   position: relative;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
-  margin: 0 15px 15px;
-  //border-radius: 5px;
-  /* display: flex;
-  justify-content: flex-end;
-  align-items: center; */
+  margin: 8px 0px 15px;
 
   &:before {
     content: "";
@@ -47,4 +43,6 @@ export const StatsBar = styled("div")<StatsBarProps>`
 
 export const Container = styled("div")`
   display: flex;
+  flex-direction: column;
+  text-transform: capitalize;
 `;

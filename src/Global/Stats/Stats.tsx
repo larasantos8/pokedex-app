@@ -9,10 +9,10 @@ interface StatsProps {
 const Stats: React.FC<StatsProps> = ({ stats, color, value }) => {
   return (
     <Container>
-      {/* posicionamento */}
-      <div>{stats}</div>
+      <div>
+        {stats} {value}
+      </div>
       <StatsBar color={color} width={value} />
-      {value}
     </Container>
   );
 };
