@@ -1,9 +1,22 @@
 import styled from "styled-components";
 import { Button, TextField } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 
 export const StyledContainerFlexEnd = styled("div")`
   display: flex;
   justify-content: flex-end;
+`;
+
+export const StyledContainerOneCard = styled("div")`
+  margin-left: 50px;
+`;
+
+export const StyledHeader = styled("div")`
+  text-align: center;
+
+  > img {
+    margin-top: 20px;
+  }
 `;
 
 export const Container = styled("div")`
@@ -11,10 +24,6 @@ export const Container = styled("div")`
   justify-content: center;
   align-items: center;
   margin-top: 50px;
-`;
-
-export const StyledTextField = styled(TextField)`
-  width: 50% !important;
 `;
 
 export const StyledButton = styled(Button)`
@@ -46,3 +55,35 @@ export const ContainerButtonMoreData = styled("div")`
   justify-content: center;
   margin: 25px 0;
 `;
+
+export const CssTextField = withStyles({
+  root: {
+    width: "50%",
+    "& label.Mui-focused": {
+      color: "white",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "white",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "white",
+      },
+      "&:hover fieldset": {
+        borderColor: "#39738c",
+      },
+      "&.Mui-focused fieldset": {
+        borderColor: "white",
+      },
+    },
+    "& .MuiInputLabel-root": {
+      color: "white",
+    },
+    // "& .MuiInputBase-input": {
+    //   color: "#f6e652",
+    // },
+    "& .MuiOutlinedInput-input": {
+      color: "white",
+    },
+  },
+})(TextField);

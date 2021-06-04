@@ -6,6 +6,7 @@ export const StyledCard = styled(Card)`
     max-width: 200px;
     background-color: #717178 !important;
     margin-bottom: 20px;
+    box-shadow: 0 0 4px #000, 5px 5px 20px #0395da !important;
 
     > img:nth-child(1) {
       height: 230px;

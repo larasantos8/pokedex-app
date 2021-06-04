@@ -15,7 +15,9 @@ import {
   StyledClearButton,
   StyledContainerFlexEnd,
   StyledImg,
-  StyledTextField,
+  CssTextField,
+  StyledHeader,
+  StyledContainerOneCard,
 } from "./SearchPokemon_style";
 import { ContainerSection } from "../../Pokemon/Components/Pokemon_style";
 import CardImage from "../../Global/Card/Card";
@@ -66,14 +68,18 @@ const SearchPokemon = () => {
 
   return (
     <ContainerSection>
-      <h1 style={{ textAlign: "center" }}>
-        Which Pokemon are we going to capture today?
-      </h1>
+      <StyledHeader>
+        <img
+          src="https://fontmeme.com/permalink/210604/3f816d4880cde324621b5b183b00fc9e.png"
+          alt="Pokédex"
+        />
+        <h1>Which Pokemon are we going to capture today?</h1>
 
-      <p style={{ textAlign: "center" }}>
-        Search for a new Pokémon or click on the Pokédex to view your captured
-        Pokémon!
-      </p>
+        <p>
+          Search for a new Pokémon or click on the Pokédex to view your captured
+          Pokémon!
+        </p>
+      </StyledHeader>
 
       <StyledContainerFlexEnd>
         <Tooltip title="Pokédex" placement="left" arrow>
@@ -86,7 +92,7 @@ const SearchPokemon = () => {
         </Tooltip>
       </StyledContainerFlexEnd>
       <Container>
-        <StyledTextField
+        <CssTextField
           value={pokemonIdentifier}
           label="Enter the name or number of the pokémon you want to catch!"
           placeholder="pikachu or 25"
@@ -131,13 +137,15 @@ const SearchPokemon = () => {
       </GridContainer>
 
       {Object.keys(pokemonState).length > 0 && (
-        <CardImage
-          key={pokemonState.id + Math.random()}
-          title={pokemonState.name}
-          id={pokemonState.id}
-          image={pokemonState.sprites?.front_default}
-          handleClick={handlePokemonCaptureBySearch}
-        />
+        <StyledContainerOneCard>
+          <CardImage
+            key={pokemonState.id + Math.random()}
+            title={pokemonState.name}
+            id={pokemonState.id}
+            image={pokemonState.sprites?.front_default}
+            handleClick={handlePokemonCaptureBySearch}
+          />
+        </StyledContainerOneCard>
       )}
 
       <ContainerButtonMoreData>
