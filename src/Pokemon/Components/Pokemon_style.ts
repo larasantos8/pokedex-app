@@ -49,4 +49,48 @@ export const ContainerButtons = styled("div")`
   display: flex;
   justify-content: space-around;
   margin-bottom: 20px;
+
+  > button {
+    width: 200px;
+  }
+`;
+
+export const ContainerEvolutions = styled("div")`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-bottom: 50px;
+
+  > div > h2 {
+    font-size: 20px;
+    text-transform: capitalize;
+    text-align: center;
+  }
+`;
+
+export const ContainerStats = styled("div")`
+  margin: 20px 0px 30px 50px;
+`;
+
+export const StyledH2 = styled("h2")`
+  margin-left: 50px;
+`;
+
+export const StyledH1 = styled("h1")`
+  text-align: center;
+  text-transform: capitalize;
+`;
+
+export const Evolutions = styled("div")`
+  background: #36363e;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  box-shadow: 0 0 4px #000, 5px 5px 20px #0395da;
+`;
+
+export const EvolutionsImg = styled("img")`
+  width: 120px;
+  margin-top: 15px;
+  margin-left: 15px;
 `;

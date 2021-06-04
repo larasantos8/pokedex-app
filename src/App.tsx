@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 import SearchPokemonPage from "./SearchPokemon/Page/SearchPokemonPage";
 import PokemonPage from "./Pokemon/Page/PokemonPage";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
@@ -19,10 +24,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
-          {/* <Route path="/" component={HomePage} /> */}
           <Route path="/search-pokemon" component={SearchPokemonPage} />
           <Route path="/pokedex/" exact component={PokemonPage} />
-          <Route render={() => <h1>Page not found</h1>} />
+          <Redirect from="/" to="/search-pokemon" />
         </Switch>
       </Router>
     </ThemeProvider>

@@ -11,6 +11,7 @@ export const GlassContainer = styled(animated.div)`
   border: 2px solid transparent;
   background-clip: border-box;
   cursor: pointer;
+  box-shadow: 0 0 4px #000, 5px 5px 20px #0395da;
 `;
 
 export const StyledImg = styled("img")`
