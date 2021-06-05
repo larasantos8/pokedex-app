@@ -1,14 +1,14 @@
 import { PokemonProps } from "../../../Pokedex/Components/Pokedex";
 import * as actionTypes from "../Types/SearchPokemon";
 
-interface State {
+export interface State {
   loading: boolean;
   hasError: boolean;
   data: PokemonProps | {};
   dataList: Array<PokemonProps>;
 }
 
-export const initialState = {
+export const initialState: State = {
   loading: false,
   hasError: false,
   data: {},

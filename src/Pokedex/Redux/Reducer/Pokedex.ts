@@ -1,11 +1,11 @@
 import * as actionTypes from "../Types/Pokedex";
 import { PokemonProps } from "../../Components/Pokedex";
 
-interface State {
+export interface State {
   capturedPokemons: Array<PokemonProps>;
 }
 
-export const initialState = {
+export const initialState: State = {
   capturedPokemons: [],
 };
 
