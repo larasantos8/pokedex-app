@@ -148,16 +148,17 @@ const SearchPokemon = () => {
         </StyledContainerOneCard>
       )}
 
-      <ContainerButtonMoreData>
-        <StyledButton
-          color="primary"
-          variant="contained"
-          onClick={handleLoadMoreData}
-        >
-          Load more
-        </StyledButton>
-      </ContainerButtonMoreData>
-
+      {Object.keys(pokemonState).length < 0 && (
+        <ContainerButtonMoreData>
+          <StyledButton
+            color="primary"
+            variant="contained"
+            onClick={handleLoadMoreData}
+          >
+            Load more
+          </StyledButton>
+        </ContainerButtonMoreData>
+      )}
       <Dialog
         aria-labelledby="Pokédex"
         aria-describedby="List of captured pokémons"

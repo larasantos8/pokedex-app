@@ -2,11 +2,11 @@
 
 This project is designed so that you can find and capture Pokemon to become a Pokemon Master!
 
-## 👀 Demo
+## Demo 👀
 
 ![Gif](https://github.com/larasantos8/pokedex-app/blob/0f901cf7a351a9cae7e2219c1508350dd3c71c05/src/Assets/gif.gif)
 
-Insert gif or link to demo
+[Demo](https://capture-poke.netlify.app)
 
 ## Documentation
 
