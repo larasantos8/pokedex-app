@@ -66,7 +66,7 @@ const SearchPokemon = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
+   return (
     <ContainerSection>
       <StyledHeader>
         <img
@@ -148,7 +148,7 @@ const SearchPokemon = () => {
         </StyledContainerOneCard>
       )}
 
-      {Object.keys(pokemonState).length < 0 && (
+      {Object.keys(pokemonState).length === 0 && (
         <ContainerButtonMoreData>
           <StyledButton
             color="primary"
